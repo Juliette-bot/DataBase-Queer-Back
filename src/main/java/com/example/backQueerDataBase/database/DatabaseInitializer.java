@@ -12,10 +12,10 @@ public class DatabaseInitializer {
 
     @PostConstruct
     public void init() {
-        System.out.println("\n🔧 === INITIALISATION DE LA BASE DE DONNÉES ===\n");
+        System.out.println("\nStart initialisation bdd\n");
         createTables();
         insertTestData();
-        System.out.println("\n✅ === INITIALISATION TERMINÉE ===\n");
+        System.out.println("\nInitialisation done\n");
     }
 
     public void createTables() {
