@@ -21,14 +21,10 @@ public class Users implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // ici je pense que log vas pas etre ok
-
+    private Long id;
     private String firstName;
-
     private String lastName;
-
     private String email;
-
     private String password;
 
    // @OneToMany
@@ -37,6 +33,8 @@ public class Users implements UserDetails {
     //plus tard on pourra rajouter l'adresse ?
 
     private LocalDateTime createdAt;
+
+
 
     /* UserDetails */
 
