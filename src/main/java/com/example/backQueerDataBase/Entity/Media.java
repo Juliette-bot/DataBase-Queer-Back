@@ -1,21 +1,20 @@
 package com.example.backQueerDataBase.Entity;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Categories {
+public class Media {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "media_id", nullable = false)
-    private Medias  medias;
+    @OneToMany(mappedBy = "media", fetch = FetchType.LAZY)
+    private List<Category> categories;
 }
-

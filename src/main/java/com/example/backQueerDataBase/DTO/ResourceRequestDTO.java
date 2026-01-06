@@ -1,6 +1,6 @@
 package com.example.backQueerDataBase.DTO;
 
-public record RessourcesRequestDTO(
+public record ResourceRequestDTO(
         long id,
         String name,
         String description,

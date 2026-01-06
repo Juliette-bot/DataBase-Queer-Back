@@ -14,11 +14,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Data
-public class Ressources {
+public class Resource {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private  String name;
     private String description;
     private  String url;
@@ -32,12 +32,11 @@ public class Ressources {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private Users user_id;
+    private Users contributor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sub_category_id", nullable = false)
-    private SubCategories subCategory;
+    private SubCategory subCategory;
 
 
 }
-
