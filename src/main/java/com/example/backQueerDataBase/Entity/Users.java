@@ -26,18 +26,13 @@ public class Users implements UserDetails {
     private String lastName;
     private String email;
     private String password;
-
-   // @OneToMany
-   // private List<Resources> resources;
-
-    //plus tard on pourra rajouter l'adresse ?
-
     private LocalDateTime createdAt;
 
+    @OneToMany(mappedBy = "contributor", fetch = FetchType.LAZY)
+    private List<Resource> ressources;
 
 
     /* UserDetails */
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
