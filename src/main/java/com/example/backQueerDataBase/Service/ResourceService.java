@@ -15,7 +15,7 @@ public class ResourceService {
     private final ResourceRepository ressourcesRepository;
 
 
-    public Optional<ResourceResponseDTO> getRessourcesById(long id) {
+    public Optional<ResourceResponseDTO> getRessourcesById(Long id) {
         return ressourcesRepository.findById(id)
                 .map(ResourceResponseDTO::fromEntity);
     }
@@ -23,5 +23,10 @@ public class ResourceService {
     public List<ResourceResponseDTO> getRessourcesBySubCategory(ResourceService id) {
         return ressourcesRepository.findBySubCategory(id)
                 .stream().map(ResourceResponseDTO::fromEntity).toList();
+    }
+
+    public Optional<ResourceResponseDTO> getRessourcesByName(String name) {
+        return ressourcesRepository.findByName(name)
+                .map(ResourceResponseDTO::fromEntity);
     }
 }
