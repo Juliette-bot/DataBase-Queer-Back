@@ -10,7 +10,10 @@ public class EnvConfig {
 
     public static void loadEnvironmentVariables() {
         try {
+            System.out.println("Working directory: " + System.getProperty("user.dir"));
+
             Dotenv dotenv = Dotenv.configure()
+                    .directory(".")
                     .ignoreIfMissing()
                     .load();
 
@@ -21,7 +24,7 @@ public class EnvConfig {
             System.out.println("Variables d'environnement chargées depuis .env");
 
         } catch (Exception e) {
-            System.out.println("Fichier .env non trouvé");
+            System.out.println("Fichier .env non trouvé: " + e.getMessage());
         }
     }
-}
+    }

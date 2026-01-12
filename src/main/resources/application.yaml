@@ -8,6 +8,9 @@ spring:
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
+jwt:
+  secret: tonSuperSecretKeyQuiDoitEtreLonguePourEtreSecure123456789
+  expiration: 86400000
 
   jpa:
     hibernate:

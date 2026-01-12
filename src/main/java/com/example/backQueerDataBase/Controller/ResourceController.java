@@ -1,12 +1,11 @@
 package com.example.backQueerDataBase.Controller;
 
 
+import com.example.backQueerDataBase.DTO.ResourceRequestDTO;
 import com.example.backQueerDataBase.DTO.ResourceResponseDTO;
 import com.example.backQueerDataBase.Service.ResourceService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,5 +28,11 @@ public class ResourceController {
         System.out.println("Controller Ressources Id call");
         Optional<ResourceResponseDTO> ressourcesResponseDTOList = ressourcesService.getRessourcesById(id);
         return ressourcesResponseDTOList;
+    }
+
+    @PostMapping("/resource/add")
+    public ResourceResponseDTO addNewResource(@RequestBody ResourceRequestDTO newResource) {
+        System.out.println("Controller Add Resource call");
+        return ressourcesService.addResource(newResource);
     }
 }
