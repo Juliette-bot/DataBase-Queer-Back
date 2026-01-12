@@ -6,10 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "resources")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -31,11 +33,11 @@ public class Resource {
     private LocalDateTime updated_at;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = true)
     private Users contributor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sub_category_id", nullable = false)
+    @JoinColumn(name = "sub_category_id", nullable = true)
     private SubCategory subCategory;
 
 

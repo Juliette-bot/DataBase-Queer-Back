@@ -1,7 +1,7 @@
 package com.example.backQueerDataBase.Controller;
 
+import com.example.backQueerDataBase.DTO.UsersAuthResponseDTO;
 import com.example.backQueerDataBase.DTO.UsersLoginRequestDTO;
-import com.example.backQueerDataBase.DTO.UsersProfileResponseDTO;
 import com.example.backQueerDataBase.DTO.UsersRegisterRequestDTO;
 import com.example.backQueerDataBase.Service.UsersService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,12 +20,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public UsersProfileResponseDTO register(@RequestBody UsersRegisterRequestDTO content){
+    public UsersAuthResponseDTO register(@RequestBody UsersRegisterRequestDTO content){
         return usersService.register(content);
     }
 
     @PostMapping("/login")
-    public UsersProfileResponseDTO login(@RequestBody UsersLoginRequestDTO content) {
+    public UsersAuthResponseDTO login(@RequestBody UsersLoginRequestDTO content) {
         return usersService.login(content);
     }
 }

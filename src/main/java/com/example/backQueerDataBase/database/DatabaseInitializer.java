@@ -54,22 +54,22 @@ public class DatabaseInitializer {
         """;
 
         String createResourcesTable = """
-            CREATE TABLE IF NOT EXISTS resources (
-                id BIGSERIAL PRIMARY KEY,
-                name VARCHAR(200) NOT NULL,
-                description TEXT,
-                sub_category_id BIGINT REFERENCES sub_categories(id) ON DELETE SET NULL,
-                user_id BIGINT REFERENCES users(id) ON DELETE SET NULL,
-                url VARCHAR(500),
-                image_url VARCHAR(500),
-                creator VARCHAR(200),
-                release_year INTEGER,
-                duration_minutes INTEGER,
-                platform VARCHAR(100),
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        """;
+    CREATE TABLE IF NOT EXISTS resources (
+        id BIGSERIAL PRIMARY KEY,
+        name VARCHAR(200) NOT NULL,
+        description TEXT,
+        sub_category_id BIGINT REFERENCES sub_categories(id) ON DELETE SET NULL,
+        user_id BIGINT REFERENCES users(id) ON DELETE SET NULL,
+        url VARCHAR(500),
+        image_url VARCHAR(500),
+        creator VARCHAR(200),
+        release_year INTEGER,
+        duration_minutes INTEGER,
+        platform VARCHAR(100),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+""";
 
         try (Connection conn = DatabaseConfig.getConnection();
              Statement stmt = conn.createStatement()) {
