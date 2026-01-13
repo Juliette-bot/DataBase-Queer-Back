@@ -33,7 +33,7 @@ public class ResourceService {
                 .map(ResourceResponseDTO::fromEntity);
     }
 
-    // ← AJOUTE CETTE MÉTHODE !
+
     public ResourceResponseDTO addResource(ResourceRequestDTO resource) {
         Resource newResource = Resource.builder()
                 .name(resource.name())
