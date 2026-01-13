@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.4.1'
     id 'io.spring.dependency-management' version '1.1.7'
+    id 'checkstyle'
 }
 
 group = 'com.example'
@@ -13,12 +14,18 @@ java {
         languageVersion = JavaLanguageVersion.of(17)
     }
 }
-
 configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+    checkstyle {
+        exclude group: "com.google.collections", module: "google-collections"
     }
 }
+
+checkstyle {
+    toolVersion = "10.12.5"
+    configDirectory = file("$rootDir/config/checkstyle")
+    configFile = file("$rootDir/config/checkstyle/checkstyle.xml")
+}
+
 
 repositories {
     mavenCentral()

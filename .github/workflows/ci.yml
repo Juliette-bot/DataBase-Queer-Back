@@ -30,4 +30,3 @@ jobs:
       - name: Run Checkstyle
         run: ./gradlew checkstyleMain checkstyleTest
         continue-on-error: true
-     
