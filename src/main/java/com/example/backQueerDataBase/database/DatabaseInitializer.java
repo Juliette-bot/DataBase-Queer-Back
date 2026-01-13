@@ -59,6 +59,8 @@ public class DatabaseInitializer {
         name VARCHAR(200) NOT NULL,
         description TEXT,
         sub_category_id BIGINT REFERENCES sub_categories(id) ON DELETE SET NULL,
+        category_id BIGINT REFERENCES categories(id) ON DELETE SET NUL,
+        media_id BIGINT REFERENCES media(id) ON DELETE SET NUL
         user_id BIGINT REFERENCES users(id) ON DELETE SET NULL,
         url VARCHAR(500),
         image_url VARCHAR(500),

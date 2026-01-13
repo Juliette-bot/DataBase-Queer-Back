@@ -2,8 +2,14 @@ package com.example.backQueerDataBase.Service;
 
 import com.example.backQueerDataBase.DTO.ResourceRequestDTO;
 import com.example.backQueerDataBase.DTO.ResourceResponseDTO;
+import com.example.backQueerDataBase.Entity.Category;
+import com.example.backQueerDataBase.Entity.Media;
 import com.example.backQueerDataBase.Entity.Resource;
+import com.example.backQueerDataBase.Entity.SubCategory;
+import com.example.backQueerDataBase.Repository.CategoryRepository;
+import com.example.backQueerDataBase.Repository.MediaRepository;
 import com.example.backQueerDataBase.Repository.ResourceRepository;
+import com.example.backQueerDataBase.Repository.SubCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,8 +39,14 @@ public class ResourceService {
                 .map(ResourceResponseDTO::fromEntity);
     }
 
-    // ← AJOUTE CETTE MÉTHODE !
     public ResourceResponseDTO addResource(ResourceRequestDTO resource) {
+        SubCategory subCategory = SubCategoryRepository.findById(resource.subCategoryId())
+                .orElseThrow(() -> new RuntimeException("SubCategory not found"));
+        Category category = CategoryRepository.findById(resource.categoryId())
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+        Media media = MediaRepository.findById(resource.media_id())
+                .orElseThrow(() -> new RuntimeException("Media not found"));
+
         Resource newResource = Resource.builder()
                 .name(resource.name())
                 .description(resource.description())
@@ -44,6 +56,8 @@ public class ResourceService {
                 .duration_minutes(resource.duration_minutes())
                 .release_year(resource.release_year())
                 .platform(resource.platform())
+                .subCategory()
+                .category()
                 .build();
 
         Resource savedResource = ressourcesRepository.save(newResource);

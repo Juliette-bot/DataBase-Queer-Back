@@ -1,10 +1,9 @@
 package com.example.backQueerDataBase.DTO;
 
 import com.example.backQueerDataBase.Entity.Resource;
-import com.example.backQueerDataBase.Entity.SubCategory;
 
 public record ResourceResponseDTO(
-        long id,
+        Long id,
         String name,
         String description,
         String url,
@@ -13,7 +12,9 @@ public record ResourceResponseDTO(
         int release_year,
         int duration_minutes,
         String platform,
-        SubCategory sub_category_id) {
+        Long sub_category_id,
+        Long category_id,
+        Long media) {
 
 
     public static ResourceResponseDTO fromEntity(Resource ressources) {
@@ -28,7 +29,9 @@ public record ResourceResponseDTO(
                 ressources.getRelease_year(),
                 ressources.getDuration_minutes(),
                 ressources.getPlatform(),
-                ressources.getSubCategory()
+                ressources.getSubCategory().getId(),
+                ressources.getCategory().getId(),
+                ressources.getMedia().getId()
         );
     }
 
