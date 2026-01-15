@@ -10,5 +10,9 @@ public record ResourceRequestDTO(
         int release_year,
         int duration_minutes,
         String platform,
-        String sub_category_id) {
+        String sub_category_id,
+        String category_id,
+        String media_id,
+        String contributor
+) {
 }
