@@ -1,6 +1,9 @@
 package com.example.backQueerDataBase.Service;
 
 import com.example.backQueerDataBase.DTO.CategoryResponseDTO;
+import com.example.backQueerDataBase.DTO.MediaResponseDTO;
+import com.example.backQueerDataBase.Entity.Category;
+import com.example.backQueerDataBase.Entity.Media;
 import com.example.backQueerDataBase.Repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,8 +22,17 @@ public class CategoryService {
                 .map(CategoryResponseDTO::fromEntity);
     }
 
-    public Optional<CategoryResponseDTO> getCategoryByName(String name){
+    public List<CategoryResponseDTO> getAllCategory() {
+        List<Category> categoryList = categoryRepository.findAll();
+        return categoryList.stream()
+                .map(CategoryResponseDTO::fromEntity)
+                .toList();
+    }
+
+    public Optional<CategoryResponseDTO> getCategoryByName(String name) {
         return categoryRepository.findByName(name)
                 .map(CategoryResponseDTO::fromEntity);
     }
+
+
 }

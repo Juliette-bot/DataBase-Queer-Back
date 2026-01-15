@@ -17,7 +17,7 @@ public class Media {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String type;
 
     @OneToMany(mappedBy = "media", fetch = FetchType.LAZY)
     private List<Category> categories;
