@@ -7,6 +7,7 @@ import com.example.backQueerDataBase.Service.ResourceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,10 +17,9 @@ public class ResourceController {
     private final ResourceService ressourcesService;
 
     @GetMapping("/resource")
-    public Optional<ResourceResponseDTO> getAllRessources(){
-        System.out.println("Controller All Ressources call");
-        Optional<ResourceResponseDTO> ressourcesList = ressourcesService.getRessourcesByName(String.valueOf(ressourcesService));
-                return ressourcesList;
+    public List<ResourceResponseDTO> getAllRessources(){
+        System.out.println("Controller All Resources call");
+        return ressourcesService.getAllResources();
     }
 
     @GetMapping("/ressources/{id}")
