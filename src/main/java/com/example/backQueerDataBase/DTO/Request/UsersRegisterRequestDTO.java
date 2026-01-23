@@ -1,4 +1,4 @@
-package com.example.backQueerDataBase.DTO;
+package com.example.backQueerDataBase.DTO.Request;
 
 public record UsersRegisterRequestDTO(
         String firstName,

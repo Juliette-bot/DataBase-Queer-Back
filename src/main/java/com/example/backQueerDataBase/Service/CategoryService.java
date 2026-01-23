@@ -1,9 +1,7 @@
 package com.example.backQueerDataBase.Service;
 
-import com.example.backQueerDataBase.DTO.CategoryResponseDTO;
-import com.example.backQueerDataBase.DTO.MediaResponseDTO;
+import com.example.backQueerDataBase.DTO.Respons.CategoryResponseDTO;
 import com.example.backQueerDataBase.Entity.Category;
-import com.example.backQueerDataBase.Entity.Media;
 import com.example.backQueerDataBase.Repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

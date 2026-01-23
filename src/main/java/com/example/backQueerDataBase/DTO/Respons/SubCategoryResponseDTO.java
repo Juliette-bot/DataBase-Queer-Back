@@ -1,6 +1,5 @@
-package com.example.backQueerDataBase.DTO;
+package com.example.backQueerDataBase.DTO.Respons;
 
-import com.example.backQueerDataBase.Entity.Category;
 import com.example.backQueerDataBase.Entity.SubCategory;
 
 public record SubCategoryResponseDTO(

@@ -1,8 +1,8 @@
 package com.example.backQueerDataBase.Controller;
 
 
-import com.example.backQueerDataBase.DTO.ResourceRequestDTO;
-import com.example.backQueerDataBase.DTO.ResourceResponseDTO;
+import com.example.backQueerDataBase.DTO.Request.ResourceRequestDTO;
+import com.example.backQueerDataBase.DTO.Respons.ResourceResponseDTO;
 import com.example.backQueerDataBase.Service.ResourceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

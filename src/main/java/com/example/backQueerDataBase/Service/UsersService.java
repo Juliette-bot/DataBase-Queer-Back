@@ -1,9 +1,9 @@
 package com.example.backQueerDataBase.Service;
 
-import com.example.backQueerDataBase.DTO.UsersAuthResponseDTO;
-import com.example.backQueerDataBase.DTO.UsersLoginRequestDTO;
-import com.example.backQueerDataBase.DTO.UsersProfileResponseDTO;
-import com.example.backQueerDataBase.DTO.UsersRegisterRequestDTO;
+import com.example.backQueerDataBase.DTO.Respons.UsersAuthResponseDTO;
+import com.example.backQueerDataBase.DTO.Request.UsersLoginRequestDTO;
+import com.example.backQueerDataBase.DTO.Respons.UsersProfileResponseDTO;
+import com.example.backQueerDataBase.DTO.Request.UsersRegisterRequestDTO;
 import com.example.backQueerDataBase.Entity.Users;
 import com.example.backQueerDataBase.Repository.UsersRepository;
 import lombok.extern.slf4j.Slf4j;

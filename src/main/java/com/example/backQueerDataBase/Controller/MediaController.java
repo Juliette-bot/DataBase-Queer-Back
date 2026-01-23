@@ -1,7 +1,7 @@
 package com.example.backQueerDataBase.Controller;
 
 
-import com.example.backQueerDataBase.DTO.MediaResponseDTO;
+import com.example.backQueerDataBase.DTO.Respons.MediaResponseDTO;
 import com.example.backQueerDataBase.Service.MediaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

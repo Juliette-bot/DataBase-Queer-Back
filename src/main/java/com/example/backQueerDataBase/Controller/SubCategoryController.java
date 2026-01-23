@@ -1,7 +1,6 @@
 package com.example.backQueerDataBase.Controller;
 
-import com.example.backQueerDataBase.DTO.SubCategoryResponseDTO;
-import com.example.backQueerDataBase.Entity.Category;
+import com.example.backQueerDataBase.DTO.Respons.SubCategoryResponseDTO;
 import com.example.backQueerDataBase.Service.SubCategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

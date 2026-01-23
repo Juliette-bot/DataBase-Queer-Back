@@ -1,6 +1,6 @@
 package com.example.backQueerDataBase.Service;
 
-import com.example.backQueerDataBase.DTO.MediaResponseDTO;
+import com.example.backQueerDataBase.DTO.Respons.MediaResponseDTO;
 import com.example.backQueerDataBase.Entity.Media;
 import com.example.backQueerDataBase.Repository.MediaRepository;
 import lombok.RequiredArgsConstructor;
