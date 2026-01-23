@@ -4,12 +4,12 @@ import com.example.backQueerDataBase.Entity.Media;
 
 public record MediaResponseDTO(
         Long id,
-        String name
+        String type
 ) {
     public static MediaResponseDTO fromEntity(Media medias){
         return new MediaResponseDTO(
                 medias.getId(),
-                medias.getName()
+                medias.getType()
         );
     }
 }

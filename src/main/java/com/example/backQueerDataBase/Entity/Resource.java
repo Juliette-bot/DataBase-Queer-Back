@@ -40,5 +40,13 @@ public class Resource {
     @JoinColumn(name = "sub_category_id", nullable = true)
     private SubCategory subCategory;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = true)
+    private Category category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "media_id", nullable = true)
+    private Media media;
+
 
 }

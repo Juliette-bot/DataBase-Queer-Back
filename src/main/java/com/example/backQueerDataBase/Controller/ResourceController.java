@@ -16,11 +16,10 @@ import java.util.Optional;
 public class ResourceController {
     private final ResourceService ressourcesService;
 
-    @GetMapping("/ressources")
+    @GetMapping("/resource")
     public List<ResourceResponseDTO> getAllRessources(){
-        System.out.println("Controller All Ressources call");
-        List<ResourceResponseDTO> ressourcesList = ressourcesService.getRessourcesBySubCategory(ressourcesService);
-                return ressourcesList;
+        System.out.println("Controller All Resources call");
+        return ressourcesService.getAllResources();
     }
 
     @GetMapping("/ressources/{id}")

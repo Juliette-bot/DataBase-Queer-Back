@@ -18,6 +18,13 @@ public class ResourceService {
 
     private final ResourceRepository ressourcesRepository;
 
+    public List<ResourceResponseDTO> getAllResources() {
+        return ressourcesRepository.findAll()
+                .stream()
+                .map(ResourceResponseDTO::fromEntity)
+                .toList();
+    }
+
     public Optional<ResourceResponseDTO> getRessourcesById(Long id) {
         return ressourcesRepository.findById(id)
                 .map(ResourceResponseDTO::fromEntity);
