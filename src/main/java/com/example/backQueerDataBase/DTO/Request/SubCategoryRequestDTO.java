@@ -1,4 +1,4 @@
-package com.example.backQueerDataBase.DTO;
+package com.example.backQueerDataBase.DTO.Request;
 
 import com.example.backQueerDataBase.Entity.Category;
 

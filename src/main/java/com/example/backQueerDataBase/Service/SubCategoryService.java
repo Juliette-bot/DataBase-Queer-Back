@@ -1,7 +1,6 @@
 package com.example.backQueerDataBase.Service;
 
-import com.example.backQueerDataBase.DTO.SubCategoryResponseDTO;
-import com.example.backQueerDataBase.Entity.Category;
+import com.example.backQueerDataBase.DTO.Respons.SubCategoryResponseDTO;
 import com.example.backQueerDataBase.Entity.SubCategory;
 import com.example.backQueerDataBase.Repository.SubCategoryRepository;
 import lombok.RequiredArgsConstructor;

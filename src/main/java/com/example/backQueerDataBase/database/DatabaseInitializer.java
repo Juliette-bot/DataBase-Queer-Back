@@ -56,20 +56,50 @@ public class DatabaseInitializer {
         String createResourcesTable = """
             CREATE TABLE IF NOT EXISTS resources (
                 id BIGSERIAL PRIMARY KEY,
-                name VARCHAR(200) NOT NULL,
+                title VARCHAR(255) NOT NULL,
                 description TEXT,
-                sub_category_id BIGINT REFERENCES sub_category(id) ON DELETE SET NULL,
-                user_id BIGINT REFERENCES users(id) ON DELETE SET NULL,
                 url VARCHAR(500),
-                image_url VARCHAR(500),
-                creator VARCHAR(200),
-                release_year INTEGER,
-                duration_minutes INTEGER,
-                platform VARCHAR(100),
+                tags TEXT[],
+                language VARCHAR(50),
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                media_id BIGINT REFERENCES media(id) ON DELETE SET NULL,
                 category_id BIGINT REFERENCES category(id) ON DELETE SET NULL,
-                media_id BIGINT REFERENCES media(id) ON DELETE SET NULL
+                sub_category_id BIGINT REFERENCES sub_category(id) ON DELETE SET NULL,
+                user_id BIGINT REFERENCES users(id) ON DELETE SET NULL
+            )
+        """;
+
+        String createReadMetadataTable = """
+            CREATE TABLE IF NOT EXISTS read_metadata (
+                id BIGSERIAL PRIMARY KEY,
+                resource_id BIGINT NOT NULL UNIQUE REFERENCES resources(id) ON DELETE CASCADE,
+                author VARCHAR(255),
+                publication_date DATE,
+                page_count INTEGER,
+                format VARCHAR(100)
+            )
+        """;
+
+        String createListenMetadataTable = """
+            CREATE TABLE IF NOT EXISTS listen_metadata (
+                id BIGSERIAL PRIMARY KEY,
+                resource_id BIGINT NOT NULL UNIQUE REFERENCES resources(id) ON DELETE CASCADE,
+                creator VARCHAR(255),
+                duration INTEGER,
+                platform VARCHAR(100),
+                episode_number VARCHAR(50)
+            )
+        """;
+
+        String createWatchMetadataTable = """
+            CREATE TABLE IF NOT EXISTS watch_metadata (
+                id BIGSERIAL PRIMARY KEY,
+                resource_id BIGINT NOT NULL UNIQUE REFERENCES resources(id) ON DELETE CASCADE,
+                creator VARCHAR(255),
+                duration INTEGER,
+                platform VARCHAR(100),
+                video_type VARCHAR(100)
             )
         """;
 
@@ -93,6 +123,15 @@ public class DatabaseInitializer {
             stmt.execute(createResourcesTable);
             System.out.println("Table 'resources' créée");
 
+            stmt.execute(createReadMetadataTable);
+            System.out.println("Table 'read_metadata' créée");
+
+            stmt.execute(createListenMetadataTable);
+            System.out.println("Table 'listen_metadata' créée");
+
+            stmt.execute(createWatchMetadataTable);
+            System.out.println("Table 'watch_metadata' créée");
+
         } catch (SQLException e) {
             System.err.println("Erreur : " + e.getMessage());
             e.printStackTrace();
@@ -102,16 +141,16 @@ public class DatabaseInitializer {
     public void insertTestData() {
         String insertMedia = """
             INSERT INTO media (type) 
-            VALUES ('listen'), ('watch'), ('read')
+            VALUES ('read'), ('listen'), ('watch')
             ON CONFLICT (type) DO NOTHING
         """;
 
         String insertCategories = """
             INSERT INTO category (name, media_id) 
             VALUES 
-                ('Radio', 1), ('Podcast', 1), ('Music', 1),
-                ('Content_creators', 2), ('Cinema', 2),
-                ('Bd', 3), ('Roman', 3), ('Press', 3)
+                ('Radio', 2), ('Podcast', 2), ('Music', 2),
+                ('Content_creators', 3), ('Cinema', 3),
+                ('Bd', 1), ('Roman', 1), ('Press', 1)
             ON CONFLICT DO NOTHING
         """;
 

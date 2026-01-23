@@ -1,8 +1,8 @@
 package com.example.backQueerDataBase.Controller;
 
-import com.example.backQueerDataBase.DTO.UsersAuthResponseDTO;
-import com.example.backQueerDataBase.DTO.UsersLoginRequestDTO;
-import com.example.backQueerDataBase.DTO.UsersRegisterRequestDTO;
+import com.example.backQueerDataBase.DTO.Respons.UsersAuthResponseDTO;
+import com.example.backQueerDataBase.DTO.Request.UsersLoginRequestDTO;
+import com.example.backQueerDataBase.DTO.Request.UsersRegisterRequestDTO;
 import com.example.backQueerDataBase.Service.UsersService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

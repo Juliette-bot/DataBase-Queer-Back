@@ -1,4 +1,4 @@
-package com.example.backQueerDataBase.DTO;
+package com.example.backQueerDataBase.DTO.Respons;
 
 import com.example.backQueerDataBase.Entity.Media;
 

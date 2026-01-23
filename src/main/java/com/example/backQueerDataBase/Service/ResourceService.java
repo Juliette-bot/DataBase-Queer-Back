@@ -1,7 +1,7 @@
 package com.example.backQueerDataBase.Service;
 
-import com.example.backQueerDataBase.DTO.ResourceRequestDTO;
-import com.example.backQueerDataBase.DTO.ResourceResponseDTO;
+import com.example.backQueerDataBase.DTO.Request.ResourceRequestDTO;
+import com.example.backQueerDataBase.DTO.Respons.ResourceResponseDTO;
 import com.example.backQueerDataBase.Entity.Resource;
 import com.example.backQueerDataBase.Repository.ResourceRepository;
 import lombok.RequiredArgsConstructor;
