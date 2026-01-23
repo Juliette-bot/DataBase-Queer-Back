@@ -32,4 +32,10 @@ public class CategoryController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/media/{mediaId}/category")
+    public  ResponseEntity<List<CategoryResponseDTO>> getCategoryByMediaId(@PathVariable Long mediaId) {
+        List<CategoryResponseDTO> categoryResponseDTOList = categoryService.getByMediaId(mediaId);
+                return ResponseEntity.ok(categoryResponseDTOList);
+    }
+
 }
