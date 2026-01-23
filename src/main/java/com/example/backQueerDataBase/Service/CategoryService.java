@@ -29,9 +29,11 @@ public class CategoryService {
                 .toList();
     }
 
-    public Optional<CategoryResponseDTO> getCategoryByName(String name) {
-        return categoryRepository.findByName(name)
-                .map(CategoryResponseDTO::fromEntity);
+    public List<CategoryResponseDTO> getByMediaId(Long id){
+        return categoryRepository.findByMediaId(id)
+                .stream()
+                .map(CategoryResponseDTO::fromEntity)
+                .toList();
     }
 
 

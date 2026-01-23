@@ -1,6 +1,7 @@
 package com.example.backQueerDataBase.Controller;
 
 import com.example.backQueerDataBase.DTO.SubCategoryResponseDTO;
+import com.example.backQueerDataBase.Entity.Category;
 import com.example.backQueerDataBase.Service.SubCategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +27,15 @@ public class SubCategoryController {
     }
 
     @GetMapping("/subCategory/{id}")
-    public ResponseEntity<SubCategoryResponseDTO> getCategoryById(@PathVariable Long id){
+    public ResponseEntity<SubCategoryResponseDTO> getSubCategoryById(@PathVariable Long id){
         Optional<SubCategoryResponseDTO> subCategoryResponseDTOList = subCategoryService.getSubCategoryById(id);
         return subCategoryResponseDTOList.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/category/{categoryId}/subCategory")
+    public ResponseEntity<List<SubCategoryResponseDTO>> getByCategoryId(@PathVariable Long categoryId){
+        List<SubCategoryResponseDTO> subCategoryResponseDTOList = subCategoryService.getByIdCategory(categoryId);
+        return ResponseEntity.ok(subCategoryResponseDTOList);
     }
 }

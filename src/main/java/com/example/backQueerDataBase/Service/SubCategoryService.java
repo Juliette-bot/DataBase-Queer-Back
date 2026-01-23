@@ -1,6 +1,7 @@
 package com.example.backQueerDataBase.Service;
 
 import com.example.backQueerDataBase.DTO.SubCategoryResponseDTO;
+import com.example.backQueerDataBase.Entity.Category;
 import com.example.backQueerDataBase.Entity.SubCategory;
 import com.example.backQueerDataBase.Repository.SubCategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,9 +26,13 @@ public class SubCategoryService {
                 .toList();
     }
 
-    public Optional<SubCategoryResponseDTO> getSubCategoryByName(String name) {
-        return subCategoryRepository.findByName(name)
-                .map(SubCategoryResponseDTO::fromEntity);
+    public List<SubCategoryResponseDTO> getByIdCategory(Long id){
+        return subCategoryRepository.findByCategoryId(id)
+                .stream()
+                .map(SubCategoryResponseDTO::fromEntity)
+                .toList();
     }
+
+
 }
 
