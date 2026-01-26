@@ -1,8 +1,12 @@
 package com.example.backQueerDataBase.Entity;
+
+import com.example.backQueerDataBase.Entity.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -10,6 +14,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Resource {
 
     @Id
@@ -46,12 +51,8 @@ public class Resource {
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "sub_category_id")
-    private SubCategory subcategory;
-
-    @ManyToOne
     @JoinColumn(name = "user_id")
-    private Users users;
+    private Users user;
 
     @OneToOne(mappedBy = "resource", cascade = CascadeType.ALL, orphanRemoval = true)
     private ReadMetadata readMetadata;

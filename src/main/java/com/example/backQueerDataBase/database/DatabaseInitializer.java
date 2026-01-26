@@ -45,14 +45,6 @@ public class DatabaseInitializer {
             )
         """;
 
-        String createSubCategoryTable = """
-            CREATE TABLE IF NOT EXISTS sub_category (
-                id BIGSERIAL PRIMARY KEY,
-                name VARCHAR(100) NOT NULL,
-                category_id BIGINT REFERENCES category(id) ON DELETE CASCADE
-            )
-        """;
-
         String createResourcesTable = """
             CREATE TABLE IF NOT EXISTS resources (
                 id BIGSERIAL PRIMARY KEY,
@@ -65,7 +57,6 @@ public class DatabaseInitializer {
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 media_id BIGINT REFERENCES media(id) ON DELETE SET NULL,
                 category_id BIGINT REFERENCES category(id) ON DELETE SET NULL,
-                sub_category_id BIGINT REFERENCES sub_category(id) ON DELETE SET NULL,
                 user_id BIGINT REFERENCES users(id) ON DELETE SET NULL
             )
         """;
@@ -117,9 +108,6 @@ public class DatabaseInitializer {
             stmt.execute(createCategoryTable);
             System.out.println("Table 'category' créée");
 
-            stmt.execute(createSubCategoryTable);
-            System.out.println("Table 'sub_category' créée");
-
             stmt.execute(createResourcesTable);
             System.out.println("Table 'resources' créée");
 
@@ -148,17 +136,16 @@ public class DatabaseInitializer {
         String insertCategories = """
             INSERT INTO category (name, media_id) 
             VALUES 
-                ('Radio', 2), ('Podcast', 2), ('Music', 2),
-                ('Content_creators', 3), ('Cinema', 3),
-                ('Bd', 1), ('Roman', 1), ('Press', 1)
-            ON CONFLICT DO NOTHING
-        """;
-
-        String insertSubCategories = """
-            INSERT INTO sub_category (name, category_id)
-            VALUES 
-                ('YouTube', 4), ('Twitch', 4), ('Porno', 4), ('Instagram', 4),
-                ('Documentaire', 5), ('Film', 5), ('Serie', 5)
+                ('Podcast', 2), 
+                ('Music', 2),
+                ('Content_creators', 3), 
+                ('Cinema', 3),
+                ('Documentary', 3),
+                ('Series', 3),
+                ('BD', 1), 
+                ('Roman', 1), 
+                ('Press', 1),
+                ('Article', 1)
             ON CONFLICT DO NOTHING
         """;
 
@@ -172,9 +159,6 @@ public class DatabaseInitializer {
 
             stmt.execute(insertCategories);
             System.out.println("Catégories insérées");
-
-            stmt.execute(insertSubCategories);
-            System.out.println("Sous-catégories insérées");
 
         } catch (SQLException e) {
             System.err.println("Erreur : " + e.getMessage());

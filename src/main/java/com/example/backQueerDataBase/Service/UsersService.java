@@ -21,13 +21,12 @@ public class UsersService implements UserDetailsService {
 
     private final UsersRepository usersRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService; // ← Ajoute ça
+    private final JwtService jwtService;
 
-    // Constructeur avec JwtService
     public UsersService(UsersRepository usersRepository, PasswordEncoder passwordEncoder, JwtService jwtService) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
-        this.jwtService = jwtService; // ← Ajoute ça
+        this.jwtService = jwtService;
     }
 
     @Override
@@ -51,7 +50,6 @@ public class UsersService implements UserDetailsService {
         );
     }
 
-    // ← Modifié : retourne UsersAuthResponseDTO avec token
     public UsersAuthResponseDTO register(UsersRegisterRequestDTO content){
         if (usersRepository.existsByEmail(content.email())) {
             throw new RuntimeException("Email déjà utilisé");
@@ -67,7 +65,6 @@ public class UsersService implements UserDetailsService {
 
         Users savedUser = usersRepository.save(newUsers);
 
-        // Génère le token
         String token = jwtService.generateToken(savedUser);
 
         log.info("User saved");
@@ -77,11 +74,10 @@ public class UsersService implements UserDetailsService {
                 savedUser.getFirstName(),
                 savedUser.getLastName(),
                 savedUser.getEmail(),
-                token  // ← Le token est ici !
+                token
         );
     }
 
-    // ← Modifié : retourne UsersAuthResponseDTO avec token
     public UsersAuthResponseDTO login(UsersLoginRequestDTO content){
         Users users = usersRepository.findByEmail(content.email())
                 .orElseThrow(() -> new RuntimeException("Email or password incorrect"));
@@ -90,7 +86,6 @@ public class UsersService implements UserDetailsService {
             throw new RuntimeException("Email or password incorrect");
         }
 
-        // Génère le token
         String token = jwtService.generateToken(users);
 
         return new UsersAuthResponseDTO(
@@ -98,7 +93,7 @@ public class UsersService implements UserDetailsService {
                 users.getFirstName(),
                 users.getLastName(),
                 users.getEmail(),
-                token  // ← Le token est ici !
+                token  
         );
     }
 }
