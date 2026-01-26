@@ -24,9 +24,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/category/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/media/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/subCategory/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/resource/**").permitAll()
-
+                        .requestMatchers("/api/resource/**").permitAll()
+                        //.requestMatchers(HttpMethod.GET, "/api/resource/**").permitAll()
+                        //.requestMatchers(HttpMethod.POST, "/api/resource/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

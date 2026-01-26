@@ -28,7 +28,7 @@ public class Users implements UserDetails {
     private String password;
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "contributor", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Resource> ressources;
 
 

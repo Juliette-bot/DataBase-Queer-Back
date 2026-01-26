@@ -5,6 +5,8 @@ import com.example.backQueerDataBase.DTO.Request.ResourceRequestDTO;
 import com.example.backQueerDataBase.DTO.Respons.ResourceResponseDTO;
 import com.example.backQueerDataBase.Service.ResourceService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,8 +32,12 @@ public class ResourceController {
     }
 
     @PostMapping("/resource/add")
-    public ResourceResponseDTO addNewResource(@RequestBody ResourceRequestDTO newResource) {
+    public ResourceResponseDTO addNewResource(
+            @RequestBody ResourceRequestDTO newResource,
+            @AuthenticationPrincipal UserDetails userDetails) {
+
         System.out.println("Controller Add Resource call");
-        return ressourcesService.addResource(newResource);
+        String userEmail = userDetails.getUsername();
+        return ressourcesService.addResource(newResource, userEmail);
     }
 }

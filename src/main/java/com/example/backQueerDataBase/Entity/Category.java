@@ -24,7 +24,5 @@ public class Category {
     @JoinColumn(name = "media_id", nullable = false)
     private Media media;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-    private List<SubCategory> subCategories;
 }
 

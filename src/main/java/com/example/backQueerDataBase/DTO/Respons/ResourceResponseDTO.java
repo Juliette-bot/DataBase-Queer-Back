@@ -1,6 +1,5 @@
-package com.example.backQueerDataBase.dto.response;
-
-import com.example.backQueerDataBase.model.*;
+package com.example.backQueerDataBase.DTO.Respons;
+import com.example.backQueerDataBase.Entity.Resource;
 import java.time.LocalDateTime;
 
 public record ResourceResponseDTO(
@@ -14,11 +13,9 @@ public record ResourceResponseDTO(
         LocalDateTime updatedAt,
         Long mediaId,
         Long categoryId,
-        Long subcategoryId,
         Long userId,
         String mediaType,
         String categoryName,
-        String subcategoryName,
         ReadMetadataResponseDTO readMetadata,
         ListenMetadataResponseDTO listenMetadata,
         WatchMetadataResponseDTO watchMetadata
@@ -36,12 +33,10 @@ public record ResourceResponseDTO(
                 resource.getUpdatedAt(),
                 resource.getMedia() != null ? resource.getMedia().getId() : null,
                 resource.getCategory() != null ? resource.getCategory().getId() : null,
-                resource.getSubcategory() != null ? resource.getSubcategory().getId() : null,
                 resource.getUser() != null ? resource.getUser().getId() : null,
-                resource.getMedia() != null ? resource.getMedia().getType() : null,
+                resource.getMedia() != null ? resource.getMedia().getType() : null,  // ✅ Pas de Long.valueOf(), c'est déjà un String
                 resource.getCategory() != null ? resource.getCategory().getName() : null,
-                resource.getSubcategory() != null ? resource.getSubcategory().getName() : null,
-                resource.getReadMetadata() != null ? ReadMetadataResponseDTO.fromEntity(resource.getReadMetadata()) : null,
+                resource.getReadMetadata() != null ? ReadMetadataResponseDTO.fromEntity(resource.getReadMetadata()) : null,  // ✅ Pas de String.valueOf()
                 resource.getListenMetadata() != null ? ListenMetadataResponseDTO.fromEntity(resource.getListenMetadata()) : null,
                 resource.getWatchMetadata() != null ? WatchMetadataResponseDTO.fromEntity(resource.getWatchMetadata()) : null
         );
