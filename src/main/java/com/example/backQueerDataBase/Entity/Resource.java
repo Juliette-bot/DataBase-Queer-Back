@@ -63,6 +63,10 @@ public class Resource {
     @OneToOne(mappedBy = "resource", cascade = CascadeType.ALL, orphanRemoval = true)
     private WatchMetadata watchMetadata;
 
+
+    @OneToOne(mappedBy = "resource", cascade = CascadeType.ALL, orphanRemoval = true)
+    private PlayMetadata playMetadata;
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
