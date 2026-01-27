@@ -41,7 +41,8 @@ public class DatabaseInitializer {
             CREATE TABLE IF NOT EXISTS category (
                 id BIGSERIAL PRIMARY KEY,
                 name VARCHAR(100) NOT NULL,
-                media_id BIGINT REFERENCES media(id) ON DELETE CASCADE
+                media_id BIGINT REFERENCES media(id) ON DELETE CASCADE,
+                UNIQUE (name, media_id)
             )
         """;
 
@@ -94,6 +95,16 @@ public class DatabaseInitializer {
             )
         """;
 
+        String createPlayMetadataTable = """
+            CREATE TABLE IF NOT EXISTS play_metadata (
+                id BIGSERIAL PRIMARY KEY,
+                resource_id BIGINT NOT NULL UNIQUE REFERENCES resources(id) ON DELETE CASCADE,
+                creator VARCHAR(255),
+                game_genre VARCHAR(255),
+                player_number INTEGER
+            )
+        """;
+
         try (Connection conn = DatabaseConfig.getConnection();
              Statement stmt = conn.createStatement()) {
 
@@ -120,6 +131,9 @@ public class DatabaseInitializer {
             stmt.execute(createWatchMetadataTable);
             System.out.println("Table 'watch_metadata' créée");
 
+            stmt.execute(createPlayMetadataTable);
+            System.out.println("Table 'play_metadata' créée");
+
         } catch (SQLException e) {
             System.err.println("Erreur : " + e.getMessage());
             e.printStackTrace();
@@ -129,7 +143,7 @@ public class DatabaseInitializer {
     public void insertTestData() {
         String insertMedia = """
             INSERT INTO media (type) 
-            VALUES ('read'), ('listen'), ('watch')
+            VALUES ('Lire'), ('Écouter'), ('Regarder'), ('Jouer')
             ON CONFLICT (type) DO NOTHING
         """;
 
@@ -145,8 +159,11 @@ public class DatabaseInitializer {
                 ('BD', 1), 
                 ('Roman', 1), 
                 ('Press', 1),
-                ('Article', 1)
-            ON CONFLICT DO NOTHING
+                ('Article', 1),
+                ('Board_game', 4),
+                ('Video_game', 4) 
+                
+            ON CONFLICT (name, media_id) DO NOTHING
         """;
 
         try (Connection conn = DatabaseConfig.getConnection();
