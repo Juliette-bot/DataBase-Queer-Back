@@ -1,5 +1,6 @@
 [build]
 builder = "nixpacks"
+buildCommand = "./gradlew clean build -x test"
 
 [build.nixpacksPlan.phases.setup]
 nixPkgs = ["jdk17"]
