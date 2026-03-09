@@ -8,11 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public record PlayMetadataResponseDTO (
-         Long id;
-         String creator;
-         String gameGenre;
-         Integer playerNumber;){
+public class PlayMetadataResponseDTO {
 
-
+    private Long id;
+    private String creator;
+    private String gameGenre;
+    private Integer playerNumber;
 }
